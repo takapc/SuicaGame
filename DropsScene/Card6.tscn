@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ttlsanbg6tr"]
+
+[ext_resource type="PackedScene" uid="uid://c3hlmf7m0lswf" path="res://DropsScene/BaseCard.tscn" id="1_dj1sm"]
+[ext_resource type="PackedScene" uid="uid://yx206oibmegn" path="res://DropsScene/Card7.tscn" id="2_vycv3"]
+[ext_resource type="Texture2D" uid="uid://d0p4nm2mqg20h" path="res://Drops/Card6.png" id="2_vymdi"]
+
+[node name="Card6" instance=ExtResource("1_dj1sm")]
+NextCard = ExtResource("2_vycv3")
+GroupName = "Card6s"
+score = 64
+
+[node name="CollisionShape2D" parent="." index="0"]
+scale = Vector2(3.62972, 2.288)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vymdi")

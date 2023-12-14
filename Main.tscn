@@ -1,0 +1,112 @@
+[gd_scene load_steps=18 format=3 uid="uid://bxvfltlf2v3oj"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_xmd4d"]
+[ext_resource type="Texture2D" uid="uid://dftabac0f3vlh" path="res://JR.png" id="2_01lpa"]
+[ext_resource type="PackedScene" uid="uid://c6e6yc8j2cve1" path="res://DropsScene/Card0.tscn" id="2_sjj70"]
+[ext_resource type="Script" path="res://Player.gd" id="3_e8pde"]
+[ext_resource type="Texture2D" uid="uid://d0t8brf1gcy4l" path="res://Drops/Card1.png" id="3_jh2ub"]
+[ext_resource type="PackedScene" uid="uid://3vlh62b17n80" path="res://DropsScene/Card1.tscn" id="3_xcfsx"]
+[ext_resource type="PackedScene" uid="uid://drh7n0w2dpail" path="res://DropsScene/Card2.tscn" id="4_3822w"]
+[ext_resource type="PackedScene" uid="uid://3fe8mil5mtyo" path="res://DropsScene/Card3.tscn" id="5_dj51y"]
+[ext_resource type="PackedScene" uid="uid://bmc776so2ew42" path="res://DropsScene/Card4.tscn" id="6_5bxxk"]
+[ext_resource type="Texture2D" uid="uid://lhxerescqaf7" path="res://Suica Game.png" id="7_fg8xa"]
+[ext_resource type="FontFile" uid="uid://ch6blq2kvpk3d" path="res://Xolonium-Regular.ttf" id="11_nq8s0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir0k7"]
+size = Vector2(33, 593.322)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_syhdk"]
+bounce = 0.2
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dsqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co7gl"]
+size = Vector2(54.2364, 20.1603)
+
+[sub_resource type="Theme" id="Theme_q2ysw"]
+
+[sub_resource type="Theme" id="Theme_jvi08"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_xmd4d")
+AllCards = Array[PackedScene]([ExtResource("2_sjj70"), ExtResource("3_xcfsx"), ExtResource("4_3822w"), ExtResource("5_dj51y"), ExtResource("6_5bxxk")])
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(638, 416)
+scale = Vector2(1.1722, 1.00786)
+shape = SubResource("RectangleShape2D_ir0k7")
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_syhdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+position = Vector2(459, 639.407)
+scale = Vector2(11.5907, 0.099128)
+shape = SubResource("RectangleShape2D_ir0k7")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-364, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(638, 416)
+shape = SubResource("RectangleShape2D_ir0k7")
+
+[node name="Limit" type="RigidBody2D" parent="."]
+position = Vector2(-8, -427)
+physics_material_override = SubResource("PhysicsMaterial_7dsqq")
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limit"]
+position = Vector2(465, 635)
+rotation = 3.14159
+scale = Vector2(6.5967, 1.80183)
+shape = SubResource("RectangleShape2D_co7gl")
+one_way_collision = true
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("7_fg8xa")
+centered = false
+
+[node name="NextCard" type="Sprite2D" parent="."]
+position = Vector2(117, 146)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jh2ub")
+
+[node name="SelectCard" type="Sprite2D" parent="."]
+position = Vector2(450, 180)
+scale = Vector2(0.25, 0.25)
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(450, 120)
+scale = Vector2(0.15, 0.147)
+texture = ExtResource("2_01lpa")
+script = ExtResource("3_e8pde")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 308.0
+offset_right = 245.0
+offset_bottom = 378.0
+scale = Vector2(0.839712, 0.976158)
+theme = SubResource("Theme_q2ysw")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_nq8s0")
+theme_override_font_sizes/font_size = 50
+text = "99999
+"
+horizontal_alignment = 2
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+offset_left = 97.0
+offset_top = 191.0
+offset_right = 793.0
+offset_bottom = 506.0
+theme = SubResource("Theme_jvi08")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_nq8s0")
+theme_override_font_sizes/font_size = 85
+text = "GAME OVER"
+horizontal_alignment = 1
